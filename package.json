@@ -1,0 +1,26 @@
+{
+  "name": "todo-app-acamica",
+  "version": "1.0.0",
+  "description": "Hacer una todo list utilizando express, una REST API y guardando todo con el modulo fs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmansilla-meli/todo-app-acamica.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmansilla-meli/todo-app-acamica/issues"
+  },
+  "homepage": "https://github.com/lmansilla-meli/todo-app-acamica#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "lowdb": "^1.0.0",
+    "shortid": "^2.2.13"
+  }
+}

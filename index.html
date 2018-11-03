@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Acamica Task list</title>
+
+    <style>
+        .tasks .actions-tasks {
+            opacity: 0;
+            display: block;
+            text-align: right;
+        }
+        .tasks .actions-tasks .hidden {
+            display: none;
+        }
+        .tasks:hover .actions-tasks {
+            opacity: 1;
+        }
+        #msjFail {
+            color: rgb(230, 73, 73);
+            font-size: .7em;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-light bg-dark mt-3 mb-0 p-4">
+            <h1 class="display-4">Simple Task List!</h1>
+            <p class="lead">Create, edit and delete your tasks easily.</p>
+            <div class="d-flex justify-content-between align-items-end">
+                <div><button class="btn btn-primary btn-lg" onclick="newOrEdit(false)">Create a new task</button></div>
+                <div id="total-task-created"></div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card text-white bg-success text-center">
+                    <div class="card-header p-1">
+                        TO DO
+                    </div>
+                    <div class="card-body p-1">
+                        <h1 id="count-todo"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-white bg-info text-center">
+                    <div class="card-header p-1">
+                        IN PROGRESS
+                    </div>
+                    <div class="card-body p-1">
+                        <h1 id="count-inprogress"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-white bg-warning text-center">
+                    <div class="card-header p-1">
+                        DONE
+                    </div>
+                    <div class="card-body p-1">
+                        <h1 id="count-done"></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-white bg-danger text-center">
+                    <div class="card-header p-1">
+                        DELETED
+                    </div>
+                    <div class="card-body p-1">
+                        <h1 id="count-deleted"></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="task-content">
+            <div class="col-6">
+                <h4>TO DO</h4>
+                <div id="task-list-todo" class="list-group"></div>
+            </div>
+            <div class="col-6">
+                <h4>IN PROGRESS</h4>
+                <div id="task-list-inprogress" class="list-group"></div>
+            </div>
+            <div class="col-6 mt-5 mb-5">
+                <h4>DONE</h4>
+                <div id="task-list-done" class="list-group"></div>
+            </div>
+            <div class="col-6 mt-5 mb-5">
+                <h4>DELETED</h4>
+                <div id="task-list-deleted" class="list-group"></div>
+                <small class="float-right pt-1 pr-1" id="definitly-deleted"></small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Creating a new task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="taskname">Name / Title</label>
+                            <input type="text" class="form-control" id="taskname" placeholder="Name your task here!"
+                                autofocus>
+                            <small id="msjFail"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskdescription">Description</label>
+                            <textarea class="form-control" id="taskdescription" rows="5" placeholder="What are you need doing?"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div id="idTaskEdit"></div>
+                    <div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
+                        <button type="button" id="sendTask" class="btn btn-success">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/tasks.js"></script>
+    <script src="assets/js/actions.js"></script>
+</body>
+
+</html>
