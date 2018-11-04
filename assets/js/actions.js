@@ -36,7 +36,7 @@ function fetchPOST() {
     };
 
     if (title.val()) {
-        fetch(urlAPI + 'post', {
+        fetch(urlAPI, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -64,7 +64,7 @@ function fetchPUT(id, status) {
     };
 
     if (title.val()) {
-        fetch(urlAPI + 'put', {
+        fetch(urlAPI, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
@@ -98,7 +98,7 @@ function fetchPUT_status(id, nextStatus) {
             };
 
             function putNoDeleted() {
-                fetch(urlAPI + 'put', {
+                fetch(urlAPI, {
                     method: 'PUT',
                     body: JSON.stringify(data),
                     headers: {
@@ -121,7 +121,7 @@ function fetchPUT_status(id, nextStatus) {
                 } else {
                     var confirmDel = confirm("¿Are you sure delete permanently this task?");
                     if (confirmDel) {
-                        fetch(urlAPI + 'delete', {
+                        fetch(urlAPI, {
                             method: 'DELETE',
                             body: JSON.stringify({ id }),
                             headers: {

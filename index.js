@@ -29,44 +29,18 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // API
 app.all('*', cors())
-app.route('/api/tareas/:status')
-    //----------------------------------- GET
+
+app.route('/api')
     .get(cors(), function (req, res) {
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.header('Expires', '-1');
-        res.header('Pragma', 'no-cache');
-
-        //res.json(db.getState())
-        switch (req.params.status) {
-            case "todo":
-                res.json(db_task.filter({ status: 'TODO' }).value())
-                break;
-            case "done":
-                res.json(db_task.filter({ status: 'DONE' }).value())
-                break;
-            case "inprogress":
-                res.json(db_task.filter({ status: 'IN PROGRESS' }).value())
-                break;
-            case "deleted":
-                res.json(db_task.filter({ status: 'DELETED' }).value())
-                //.take(5)
-                break;
-            case "total":
-                res.json({ count_live: db_task.size().value(), count_total: db_count.value() })
-                break;
-            default:
-                res.json(db_task.find({ id: req.params.status }).value())
-                break;
-        }
+        res.send('api solo')
     })
-
     //----------------------------------- POST
     .post(cors(), function (req, res) {
         var title = req.body.title,
             id = shortid.generate(),
             status = req.body.status,
             description = req.body.description,
-            date = new Date().toLocaleString('es-AR', { hour12: false } )
+            date = new Date().toLocaleString('es-AR', { hour12: false })
 
         if (title && status && description) {
             db_task
@@ -92,7 +66,7 @@ app.route('/api/tareas/:status')
             title = req.body.title,
             status = req.body.status,
             description = req.body.description,
-            date = new Date().toLocaleString('es-AR', { hour12: false } ),
+            date = new Date().toLocaleString('es-AR', { hour12: false }),
             value = db_task.find({ id }).value()
 
         if (value) {
@@ -123,6 +97,37 @@ app.route('/api/tareas/:status')
             res.status(200).json(value)
         } else {
             res.status(400).json('Oops! ID: "' + id + '" not exist.')
+        }
+    })
+
+app.route('/api/:status')
+    //----------------------------------- GET
+    .get(cors(), function (req, res) {
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+        res.header('Expires', '-1');
+        res.header('Pragma', 'no-cache');
+
+        //res.json(db.getState())
+        switch (req.params.status) {
+            case "todo":
+                res.json(db_task.filter({ status: 'TODO' }).value())
+                break;
+            case "done":
+                res.json(db_task.filter({ status: 'DONE' }).value())
+                break;
+            case "inprogress":
+                res.json(db_task.filter({ status: 'IN PROGRESS' }).value())
+                break;
+            case "deleted":
+                res.json(db_task.filter({ status: 'DELETED' }).value())
+                //.take(5)
+                break;
+            case "total":
+                res.json({ count_live: db_task.size().value(), count_total: db_count.value() })
+                break;
+            default:
+                res.json(db_task.find({ id: req.params.status }).value())
+                break;
         }
     })
 
