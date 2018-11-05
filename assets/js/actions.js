@@ -1,3 +1,7 @@
+var richTextEditor = new Simditor({
+    textarea: $('#taskdescription')
+})
+
 const idTask = document.getElementById('idTaskEdit'),
     title = $('#taskname'),
     description = $('#taskdescription')
@@ -5,24 +9,44 @@ const idTask = document.getElementById('idTaskEdit'),
 function newOrEdit(id) {
     id ? editTask(id) : newTask()
     $('#msjFail').text("")
-    $('#newTask').modal('show')
 }
 
 function newTask() {
+    $('#newTask').modal('show')
     $('#sendTask').attr('onclick', 'fetchPOST()')
     //clean form
     title.val('')
     description.val('')
+    richTextEditor.setValue('');
     idTask.innerText = ''
 }
 
-function editTask(id) {
+function seeTask(id) {
+    //seeTask
     fetch(urlAPI + id)
         .then(function (response) { return response.json() })
         .then(function (db_task) {
             //set data form
+            $('#seeTask').modal('show')
+            $('.title-of-task').html(db_task.title)
+            $('.content-of-task').html(db_task.description)
+            db_task.status !== 'TODO' && db_task.status !== 'IN PROGRESS'
+                ? $('#modal-edit-task').hide()
+                : $('#modal-edit-task').show().attr('onclick', `editTask("${id}")`)
+        });
+}
+
+function editTask(id) {
+    $('#seeTask').modal('hide')
+    $('#newTask').modal('show')
+    fetch(urlAPI + id)
+        .then(function (response) { return response.json() })
+        .then(function (db_task) {
+            //set data form
+
             title.val(db_task.title)
             description.val(db_task.description)
+            richTextEditor.setValue(db_task.description)
             idTask.innerText = 'Edit ID: ' + id
             $('#sendTask').attr('onclick', `fetchPUT("${id}", "${db_task.status}")`).text('Save')
         });

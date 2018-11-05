@@ -9,31 +9,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/simditor.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <title>Acamica Task list</title>
 </head>
 
 <body>
     <div class="container-fluid p-0">
-        <nav class="navbar navbar-light bg-light d-flex justify-content-between">
-            <div>
-                <a class="navbar-brand" href="#" title="Create, edit and delete your tasks easily.">
-                    <img src="./assets/img/icon_todo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Simple task list
-                </a>
-            </div>
-            <div>
-                <div>
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <button class="btn btn-primary btn-sm" onclick="newOrEdit(false)">New task</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav class="navbar navbar-light bg-light d-flex justify-content-between header-task">
+            <a class="navbar-brand" href="#" title="Create, edit and delete your tasks easily.">
+                <img src="./assets/img/icon_todo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Simple task list
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <button class="btn btn-primary btn-sm" onclick="newOrEdit(false)">New task</button>
+                </li>
+            </ul>
         </nav>
+        <div class="border-multicolor"></div>
 
-        <div class="row m-0 p-0 d-flex align-items-stretch">
+        <div class="row m-0 p-0 d-flex align-items-stretch content-task">
             <div class="col-12 col-sm-12 col-md-6 col-lg-3 p-0 mb-4">
                 <div class="card text-black bg-warning text-center rounded-0">
                     <div class="card-header p-0 border-bottom-0">
@@ -83,7 +80,7 @@
 
     <div id="total-task-created" class="text-light bg-dark m-0 p-2 d-flex justify-content-end"></div>
 
-    <!-- Modal -->
+    <!-- Modal NEW/EDIT Task -->
     <div class="modal fade" id="newTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -110,9 +107,30 @@
                 <div class="modal-footer d-flex justify-content-between">
                     <div id="idTaskEdit"></div>
                     <div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Dismiss</button>
                         <button type="button" id="sendTask" class="btn btn-success">Create</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal See complete Task -->
+    <div class="modal fade" id="seeTask" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title title-of-task"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body content-of-task">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn-violet" title="Edit this task" id="modal-edit-task">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -121,6 +139,11 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/module.js"></script>
+    <script src="assets/js/hotkeys.js"></script>
+    <script src="assets/js/simditor.js"></script>
+
     <script src="assets/js/tasks.js"></script>
     <script src="assets/js/actions.js"></script>
 </body>
