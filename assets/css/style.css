@@ -51,6 +51,10 @@ body {
 .task-title {
     color: #333;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
 }
 
 .task-description {
@@ -109,10 +113,6 @@ body {
     color: #fff;
     background-color: #9828a7;
     border-color: #8328a7;
-}
-
-.simditor .simditor-body, .editor-style {
-    
 }
 
 .simditor .simditor-body {

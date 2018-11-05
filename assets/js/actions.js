@@ -14,6 +14,7 @@ function newOrEdit(id) {
 function newTask() {
     $('#newTask').modal('show')
     $('#sendTask').attr('onclick', 'fetchPOST()')
+    $('#title-new-edit-task').html('Creating a new task')
     //clean form
     title.val('')
     description.val('')
@@ -39,6 +40,7 @@ function seeTask(id) {
 function editTask(id) {
     $('#seeTask').modal('hide')
     $('#newTask').modal('show')
+    $('#title-new-edit-task').html('Editing a task')
     fetch(urlAPI + id)
         .then(function (response) { return response.json() })
         .then(function (db_task) {
