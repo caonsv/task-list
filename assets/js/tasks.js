@@ -71,7 +71,7 @@ function printHTML(list, status, _open, _todo, _done, _edit, _inprogress, _delet
         listComplete += `
                         <li class="tasks list-group-item list-group-item-${status} align-items-end p-2" ondblclick="seeTask('${id}')">
                             <div class="d-block pb-2 pt-2">
-                                <p class="mb-1 pr-3 task-title"><small>${k}-</small> ${title}</p>
+                                <p class="mb-1 pr-3 task-title" title="${title}"><small>${k}-</small> ${title}</p>
                                 <small class="mb-2 task-description">${description}</small>
                                 <i class="material-icons tasks-date" data-toggle="tooltip" data-placement="auto" title="${date}">access_time</i>
                             </div>
