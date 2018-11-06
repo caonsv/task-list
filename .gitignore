@@ -61,4 +61,4 @@ typings/
 .next
 
 #my dm
-db/db.json
+db/
